@@ -11,10 +11,10 @@ function TodoForm({ addTodo }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex justify-center">
       <input
         type="text"
-        className="input"
+        className="input border-2 border-black rounded-md p-2 w-full"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Add a new todo..."

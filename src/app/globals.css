@@ -8,5 +8,5 @@ input {
   /* @apply border-2 border-black; */
 }
 button {
-  @apply border-2 rounded-md bg-orange-400 border-black w-full h-full  p-2 flex items-center justify-center font-semibold;
+  @apply border-2 rounded-md border-black p-2 bg-blue-500;
 }

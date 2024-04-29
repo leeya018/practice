@@ -1,13 +1,17 @@
 function TodoItem({ todo, toggleComplete, removeTodo }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <div className="flex justify-between my-2">
       <span
-        style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+        className={`${
+          todo.completed ? "line-through" : "no-underline"
+        }  flex items-center  flex-1`}
         onClick={() => toggleComplete(todo.id)}
       >
         {todo.text}
       </span>
-      <button onClick={() => removeTodo(todo.id)}>Delete</button>
+      <button className="flex-1" onClick={() => removeTodo(todo.id)}>
+        Delete
+      </button>
     </div>
   );
 }
