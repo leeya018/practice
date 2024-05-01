@@ -1,31 +1,30 @@
 import React, { useMemo } from "react";
 
-const generateFibonacci = (first, second) => {
-  let n = 10; // Number of elements in the Fibonacci sequence
-  let fibSequence = [first, second];
+export default function Fibonacci({ num1, num2 }) {
+  const n = 1000;
+  const generateFib = (num1, num2) => {
+    let arr = [num1, num2];
+    let i = 2;
+    while (i < n) {
+      const res = arr[i - 2] + arr[i - 1];
+      arr.push(res);
 
-  while (fibSequence.length < n) {
-    const nextFib =
-      fibSequence[fibSequence.length - 1] + fibSequence[fibSequence.length - 2];
-    fibSequence.push(nextFib);
-  }
-  return fibSequence;
-};
+      i++;
+    }
+    return arr;
+  };
 
-const Fibonacci = ({ num1, num2 }) => {
-  // Function to generate Fibonacci sequence
-  const fibonacciSequence = useMemo(() => {
-    return generateFibonacci(num1, num2);
+  const fibMemoArr = useMemo(() => {
+    return generateFib(num1, num2);
   }, [num1, num2]);
 
   return (
     <div>
-      <h2>Fibonacci Sequence</h2>
-      {fibonacciSequence.map((num, index) => (
-        <p key={index}>{num}</p>
-      ))}
+      <ul>
+        {fibMemoArr.map((item, key) => (
+          <li key={key}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
-};
-
-export default Fibonacci;
+}
