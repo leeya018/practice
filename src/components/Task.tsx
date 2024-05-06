@@ -21,7 +21,7 @@ function Task({
     <li
       onClick={() => handleChosenId(task.id)}
       key={task.id}
-      className={`w-[400px] relative p-4 text-black flex bg-white items-center justify-between border-l-4 ${
+      className={`w-[400px] relative p-4 text-black flex bg-white items-center mx-auto justify-between border-l-4 ${
         chosenId === task.id ? "border-blue-500 pl-2" : "border-transparent"
       }`}
     >

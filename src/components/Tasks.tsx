@@ -7,6 +7,7 @@ export type TaskItem = {
   id: number;
   name: string;
   cycles: number;
+  cyclesDone: number;
   isDone: boolean;
   description: string;
 };
@@ -16,6 +17,7 @@ const items = [
     id: 1,
     name: "ntiesrtniesr",
     cycles: 0,
+    cyclesDone: 0,
     isDone: false,
     description: "iesrntiesnr",
   },
@@ -23,6 +25,7 @@ const items = [
     id: 2,
     name: "hietraietsr",
     cycles: 4,
+    cyclesDone: 0,
     isDone: false,
     description: "etsr ietsrnetsrn s",
   },
@@ -31,6 +34,7 @@ const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<TaskItem[]>(items);
   const [taskName, setTaskName] = useState("");
   const [cycles, setCycles] = useState(0);
+  const [cyclesDone, setCyclesDone] = useState(0);
   const [description, setDescription] = useState("");
   const [nextId, setNextId] = useState(1);
   const [chosenId, setChosenId] = useState(-1);
@@ -40,6 +44,7 @@ const TaskList: React.FC = () => {
       id: nextId,
       name: taskName,
       cycles: cycles,
+      cyclesDone: cyclesDone,
       isDone: false,
       description: description,
     };
@@ -47,6 +52,7 @@ const TaskList: React.FC = () => {
     setNextId(nextId + 1); // Increment ID for the next task
     setTaskName("");
     setCycles(0);
+    setCyclesDone(0);
     setDescription("");
   };
 
@@ -59,6 +65,11 @@ const TaskList: React.FC = () => {
       tasks.map((task) =>
         task.id === id ? { ...task, isDone: !task.isDone } : task
       )
+    );
+  };
+  const changeTask = (id: number, taskInfo: any) => {
+    setTasks(
+      tasks.map((task) => (task.id === id ? { ...task, ...taskInfo } : task))
     );
   };
 
@@ -93,12 +104,14 @@ const TaskList: React.FC = () => {
               toggleDone={toggleDone}
               handleChosenId={setChosenId}
               chosenId={chosenId}
+              changeTask={changeTask}
             />
             // <Task
             //   task={task}
             //   removeTask={removeTask}
             //   toggleDone={toggleDone}
             //   handleChosenId={setChosenId}
+            // changeTask={changeTask}
             //   chosenId={chosenId}
             // />
           ))}
