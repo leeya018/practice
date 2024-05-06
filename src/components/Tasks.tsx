@@ -38,6 +38,7 @@ const TaskList: React.FC = () => {
   const [description, setDescription] = useState("");
   const [nextId, setNextId] = useState(1);
   const [chosenId, setChosenId] = useState(-1);
+  const [editedTaskId, setEditedTaskId] = useState(-1);
 
   const addTask = () => {
     const newTask: TaskItem = {
@@ -68,6 +69,7 @@ const TaskList: React.FC = () => {
     );
   };
   const changeTask = (id: number, taskInfo: any) => {
+    console.log({ taskInfo });
     setTasks(
       tasks.map((task) => (task.id === id ? { ...task, ...taskInfo } : task))
     );
@@ -97,24 +99,29 @@ const TaskList: React.FC = () => {
         />
         <button onClick={addTask}>Add Task</button>
         <ul className="flex flex-col gap-2">
-          {tasks.map((task) => (
-            <TaskEdit
-              task={task}
-              removeTask={removeTask}
-              toggleDone={toggleDone}
-              handleChosenId={setChosenId}
-              chosenId={chosenId}
-              changeTask={changeTask}
-            />
-            // <Task
-            //   task={task}
-            //   removeTask={removeTask}
-            //   toggleDone={toggleDone}
-            //   handleChosenId={setChosenId}
-            // changeTask={changeTask}
-            //   chosenId={chosenId}
-            // />
-          ))}
+          {tasks.map((task) =>
+            task.id === editedTaskId ? (
+              <TaskEdit
+                task={task}
+                removeTask={removeTask}
+                toggleDone={toggleDone}
+                handleChosenId={setChosenId}
+                chosenId={chosenId}
+                changeTask={changeTask}
+                updateEditedTaskId={setEditedTaskId}
+              />
+            ) : (
+              <Task
+                task={task}
+                removeTask={removeTask}
+                toggleDone={toggleDone}
+                handleChosenId={setChosenId}
+                changeTask={changeTask}
+                chosenId={chosenId}
+                updateEditedTaskId={setEditedTaskId}
+              />
+            )
+          )}
         </ul>
       </div>
     </div>

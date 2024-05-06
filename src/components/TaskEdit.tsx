@@ -2,6 +2,7 @@ import { TaskItem } from "./Tasks";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import { CiEdit } from "react-icons/ci";
 import { RiArrowUpSFill, RiArrowDownSFill } from "react-icons/ri";
+import { useState } from "react";
 
 type taskPorps = {
   task: TaskItem;
@@ -10,6 +11,7 @@ type taskPorps = {
   changeTask: any;
   handleChosenId: any;
   chosenId: number;
+  updateEditedTaskId: any;
 };
 
 function TaskEdit({
@@ -19,17 +21,31 @@ function TaskEdit({
   changeTask,
   handleChosenId,
   chosenId,
+  updateEditedTaskId,
 }: taskPorps) {
+  const [tempTask, setTempTask] = useState(task);
+
+  console.log(tempTask.description);
   return (
     <li
-      onClick={() => handleChosenId(task.id)}
-      key={task.id}
+      onClick={() => handleChosenId(tempTask.id)}
+      key={tempTask.id}
       className={`w-[400px] relative p-4 text-black flex flex-col bg-white items-center justify-between border-l-4 ${
-        chosenId === task.id ? "border-blue-500 pl-2" : "border-transparent"
+        chosenId === tempTask.id ? "border-blue-500 pl-2" : "border-transparent"
       }`}
     >
       <div className="w-[70%] mx-auto">
-        <div className="flex items-center">
+        <div className="flex flex-col items-center">
+          <div>
+            <input
+              type="text"
+              className="w-full text-xl font-bold"
+              value={tempTask.name}
+              onChange={(e) =>
+                setTempTask({ ...tempTask, name: e.target.value })
+              }
+            />
+          </div>
           <div>Act / Est Pomodoros</div>
           <div className="flex items-center">
             <div className="flex items-center">
@@ -38,11 +54,12 @@ function TaskEdit({
                 type="number"
                 name=""
                 id=""
-                value={task.cyclesDone}
+                value={tempTask.cyclesDone}
                 onChange={(e) => {
                   const val = Number(e.target.value);
-                  changeTask(task.id, {
-                    cyclesDone: val < task.cycles ? val : task.cycles,
+                  setTempTask({
+                    ...tempTask,
+                    cyclesDone: val < tempTask.cycles ? val : tempTask.cycles,
                   });
                 }}
               />
@@ -52,9 +69,9 @@ function TaskEdit({
                 type="text"
                 name=""
                 id=""
-                value={task.cycles}
+                value={tempTask.cycles}
                 onChange={(e) =>
-                  changeTask(task.id, { cycles: e.target.value })
+                  setTempTask({ ...tempTask, cycles: Number(e.target.value) })
                 }
               />
             </div>
@@ -64,7 +81,7 @@ function TaskEdit({
                 <RiArrowUpSFill
                   size={25}
                   onClick={() =>
-                    changeTask(task.id, { cycles: task.cycles + 1 })
+                    setTempTask({ ...tempTask, cycles: tempTask.cycles + 1 })
                   }
                 />
               </button>
@@ -72,8 +89,9 @@ function TaskEdit({
                 <RiArrowDownSFill
                   size={25}
                   onClick={() =>
-                    changeTask(task.id, {
-                      cycles: task.cycles > 0 ? task.cycles - 1 : 0,
+                    setTempTask({
+                      ...tempTask,
+                      cycles: tempTask.cycles > 0 ? tempTask.cycles - 1 : 0,
                     })
                   }
                 />
@@ -88,23 +106,38 @@ function TaskEdit({
             rows={5}
             cols={27}
             className="bg-gray-300"
-            value={task.description}
+            value={tempTask.description}
             onChange={(e) =>
-              changeTask(task.id, { description: e.target.value })
+              setTempTask({ ...tempTask, description: e.target.value })
             }
           />
         </div>
         {/* bottom line */}
         <div className="flex items-center justify-between w-full">
           <button
-            onClick={(e) => removeTask(task.id)}
+            onClick={(e) => removeTask(tempTask.id)}
             className="text-gray-500"
           >
             Delete
           </button>
           <div className="flex items-center gap-2">
-            <button className="text-gray-500">Cancel</button>
-            <button className="py-2 px-4 text-white bg-black ">Save</button>
+            <button
+              onClick={() => {
+                updateEditedTaskId(-1);
+              }}
+              className="text-gray-500"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                updateEditedTaskId(-1);
+                changeTask(task.id, tempTask);
+              }}
+              className="py-2 px-4 text-white bg-black "
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>

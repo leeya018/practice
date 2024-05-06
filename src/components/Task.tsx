@@ -8,6 +8,8 @@ type taskPorps = {
   removeTask: any;
   handleChosenId: any;
   chosenId: number;
+  changeTask: any;
+  updateEditedTaskId: any;
 };
 
 function Task({
@@ -16,6 +18,8 @@ function Task({
   removeTask,
   handleChosenId,
   chosenId,
+  changeTask,
+  updateEditedTaskId,
 }: taskPorps) {
   return (
     <li
@@ -39,9 +43,9 @@ function Task({
       </div>
       <div className="font-bold">{task.name}</div>
       <div>
-        {task.cycles}/{task.cycles}
+        {task.cyclesDone}/{task.cycles}
       </div>
-      <div>
+      <div onClick={() => updateEditedTaskId(task.id)}>
         <CiEdit size={25} />
       </div>
     </li>
