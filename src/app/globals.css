@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-div,
-button,
-input {
-  /* @apply border-2 border-black; */
+div {
+  @apply border-2 border-black;
 }
 button {
-  @apply border-2 rounded-md border-black p-2 bg-blue-500;
+  /* @apply border-2 rounded-md p-2 bg-blue-500; */
+}
+.button-top {
+  @apply px-2 py-1 text-white font-semibold   rounded-sm;
+}
+.button-start {
+  @apply px-7 py-2 w-44 h-12 text-red-500 font-bold bg-white  rounded-sm;
 }
