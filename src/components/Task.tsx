@@ -7,7 +7,7 @@ type taskPorps = {
   toggleDone: any;
   removeTask: any;
   handleChosenId: any;
-  chosenId: number;
+  chosenId: string;
   changeTask: any;
   updateEditedTaskId: any;
 };

@@ -1,6 +1,7 @@
 "use client";
 import Timer from "@/components/Timer";
 import Tasks from "@/components/Tasks";
+import AddForm from "@/components/AddForm";
 import React from "react";
 
 export default function page() {

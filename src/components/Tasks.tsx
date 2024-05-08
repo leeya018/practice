@@ -2,9 +2,13 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import TaskEdit from "./TaskEdit";
+import AddForm from "./AddForm";
+import { v4 as uuidv4 } from "uuid";
+
+import TaskAdd from "./TaskAdd";
 
 export type TaskItem = {
-  id: number;
+  id: string;
   name: string;
   cycles: number;
   cyclesDone: number;
@@ -12,9 +16,9 @@ export type TaskItem = {
   description: string;
 };
 
-const items = [
+const items: TaskItem[] = [
   {
-    id: 1,
+    id: uuidv4(),
     name: "ntiesrtniesr",
     cycles: 0,
     cyclesDone: 0,
@@ -22,7 +26,7 @@ const items = [
     description: "iesrntiesnr",
   },
   {
-    id: 2,
+    id: uuidv4(),
     name: "hietraietsr",
     cycles: 4,
     cyclesDone: 0,
@@ -30,45 +34,34 @@ const items = [
     description: "etsr ietsrnetsrn s",
   },
 ];
-const TaskList: React.FC = () => {
+function TaskList() {
   const [tasks, setTasks] = useState<TaskItem[]>(items);
   const [taskName, setTaskName] = useState("");
   const [cycles, setCycles] = useState(0);
   const [cyclesDone, setCyclesDone] = useState(0);
   const [description, setDescription] = useState("");
-  const [nextId, setNextId] = useState(1);
-  const [chosenId, setChosenId] = useState(-1);
-  const [editedTaskId, setEditedTaskId] = useState(-1);
 
-  const addTask = () => {
-    const newTask: TaskItem = {
-      id: nextId,
-      name: taskName,
-      cycles: cycles,
-      cyclesDone: cyclesDone,
-      isDone: false,
-      description: description,
-    };
+  const [chosenId, setChosenId] = useState("");
+  const [editedTaskId, setEditedTaskId] = useState("-1");
+  const [isAddTaskMode, setIsAddTaskMode] = useState(false);
+
+  const addTask = (newTask: TaskItem) => {
     setTasks([...tasks, newTask]);
-    setNextId(nextId + 1); // Increment ID for the next task
-    setTaskName("");
-    setCycles(0);
-    setCyclesDone(0);
-    setDescription("");
+    setIsAddTaskMode(false);
   };
 
-  const removeTask = (id: number) => {
+  const removeTask = (id: string) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const toggleDone = (id: number) => {
+  const toggleDone = (id: string) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, isDone: !task.isDone } : task
       )
     );
   };
-  const changeTask = (id: number, taskInfo: any) => {
+  const changeTask = (id: string, taskInfo: any) => {
     console.log({ taskInfo });
     setTasks(
       tasks.map((task) => (task.id === id ? { ...task, ...taskInfo } : task))
@@ -80,24 +73,6 @@ const TaskList: React.FC = () => {
   return (
     <div className="w-screen">
       <div className="w-[400px] mx-auto">
-        <input
-          type="text"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-          placeholder="Enter task name"
-        />
-        <input
-          type="number"
-          value={cycles}
-          onChange={(e) => setCycles(Number(e.target.value))}
-          placeholder="Enter number of cycles"
-        />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Enter task description"
-        />
-        <button onClick={addTask}>Add Task</button>
         <ul className="flex flex-col gap-2">
           {tasks.map((task) =>
             task.id === editedTaskId ? (
@@ -123,9 +98,23 @@ const TaskList: React.FC = () => {
             )
           )}
         </ul>
+        {/* add items */}
+        <div>
+          {isAddTaskMode && (
+            <TaskAdd onCancel={() => setIsAddTaskMode(false)} onAdd={addTask} />
+          )}
+        </div>
+        <div className="">
+          <button
+            onClick={() => setIsAddTaskMode(true)}
+            className="button-add  flex items-center justify-center"
+          >
+            Add Task
+          </button>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default TaskList;

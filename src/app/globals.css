@@ -14,3 +14,6 @@ button {
 .button-start {
   @apply px-7 py-2 w-44 h-12 text-red-500 font-bold bg-white  rounded-sm;
 }
+.button-add {
+  @apply px-7 py-2 w-full h-12 text-white font-bold bg-red-500 hover:bg-red-400  rounded-sm;
+}
