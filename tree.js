@@ -11,40 +11,69 @@ class Node {
 
 class Tree {
   root;
-  constructor(root) {
-    this.root = root;
+  constructor() {
+    this.root = null;
   }
-  add(newNode, curr) {
-    if (newNode.data > curr.data) {
-      if (curr.left === null) {
-        curr.left = newNode;
-        return;
+  insert(data) {
+    const newNode = new Node(data);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
+  }
+
+  insertNode(node, newNode) {
+    if (newNode.data < node.data) {
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        this.insertNode(node.right, newNode);
+      }
+    }
+  }
+
+  inorder(node) {
+    if (node !== null) {
+      this.inorder(node.left);
+      console.log(node.data);
+      this.inorder(node.right);
+    }
+  }
+
+  remove(data, curr) {
+    if (curr.data < data) {
+      if (curr.left && curr.left.data === data) {
+        curr.left = curr.left.left;
       } else {
         curr = curr.left;
       }
-    } else if (newNode.data <= curr.data) {
-      if (curr.right === null) {
-        curr.right = newNode;
-        return;
+    } else if (curr.data > data) {
+      if (curr.right && curr.right.data === data) {
+        curr.right = curr.right.right;
       } else {
         curr = curr.right;
       }
-    } else {
-      throw new Error("not possible");
     }
-    return this.add(newNode, curr);
   }
 }
 
 //main
-const node1 = new Node(1);
-console.log(node1);
-let tree = new Tree(node1);
-const node2 = new Node(2);
-const node5 = new Node(5);
-const node0 = new Node(0);
+let tree = new Tree();
 
-tree.add(node2, tree.root);
-tree.add(node5, tree.root);
-tree.add(node0, tree.root);
+tree.insert(4);
+tree.insert(2);
+tree.insert(5);
+tree.insert(1);
+tree.insert(3);
 console.log(tree);
+console.log(tree.root.right);
+// tree.inorder(tree.root);
+tree.remove(1, tree.root);
+// console.log(tree);
