@@ -29,5 +29,47 @@ function powerSet(array) {
 }
 
 // Example usage:
-const subsets = powerSet([1, 2, 3, 4, 5]);
-console.log(subsets);
+// const subsets = powerSet([1, 2, 3]);
+// console.log(subsets);
+
+console.log("floor");
+console.log(Math.floor(1.2));
+console.log(Math.floor(1.5));
+console.log(Math.floor(1.7));
+
+console.log("ceil");
+console.log(Math.ceil(1.2));
+console.log(Math.ceil(1.5));
+console.log(Math.ceil(1.7));
+
+console.log("round");
+console.log(Math.round(1.2));
+console.log(Math.round(1.5)); // the middle act like ceil _ go up
+console.log(Math.round(1.7));
+
+//
+const o = {
+  _: 1,
+  ABC: 2,
+  DEF: 3,
+  GHI: 4,
+  JKL: 5,
+  MNO: 6,
+  PQRS: 7,
+  TUV: 8,
+  WXYZ: 9,
+  " ": 0,
+};
+const msg = readline();
+
+let r = "";
+for (const l of msg.split("")) {
+  for (const [key, value] of Object.entries(o)) {
+    if (key.includes(l)) {
+      const ind = key.indexOf(l) + 1;
+      r += new Array(ind).fill(value).join("");
+    }
+  }
+}
+
+print(r);
