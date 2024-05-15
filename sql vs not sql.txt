@@ -28,7 +28,15 @@ Use Cases - sql - complex queries and transactions.  NoSQL excels in handling la
 Redis -Remote Dictionary Server
         fast and speed . so fit to real time db , like messages.  
 
+exmpale projects 
+sql
+Use Case: Reporting, analytics, and business intelligence applications.
+no sql - 
+Use Case: Social media platforms, IoT applications, and real-time analytics.
 
+payment system is sql . 
+media is no sql 
+banking - sql 
 
 
 
@@ -40,3 +48,10 @@ Uniqueness	 |     Must be unique		              	              	  |   Can have d
 Nullability	 |     Cannot be NULL		              	                  |   Can be NULL
 Scope	       |     Defined within a single table	              	    |   Establishes a link between two tables
 Purpose	     |     Ensures each record is unique and identifiable		  |   Ensures referential integrity between tables
+
+
+===================================DEPENDENCY INJETION . =============
+Dependency Injection is a design pattern used primarily in object-oriented programming 
+
+this is a way to give objects inside a constructor so it can be easy to manage 
+Ginving an object its instance varaibles . 
