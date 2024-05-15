@@ -1,0 +1,42 @@
+sql : 
+-Structure - table (rows and cols ) and schemas ( predefiend)
+- ACID Compliance  -Atomicity, Consistency, Isolation, Durability
+- Queries - query mulitple tables . 
+Use Cases:
+
+Ideal for applications requiring multi-row transactions, complex querying, and strong consistency (e.g., banking systems, ERP systems).
+
+no sql 
+- Structure -Flexible Schema ( Models ) and Documents, Collections, and Key-Value Pairs which are like jsons 
+- Scalability - horizontal scale . can spread it on mulitple server s . 
+- Queries - mongo query languges 
+Use Cases:
+
+Ideal for applications with large-scale data needs, unstructured data, real-time analytics, and where high throughput is more critical than strong consistency (e.g., social media platforms, content management systems, big data applications).
+
+
+Key Differences Summary
+Schema- sql has pre-defiened scemas , while no sql has Flexible schemas . 
+Scalability - sql  - vertically , noSql - horizontaly
+  horizontal - involves adding more servers or nodes to a system
+  Vertical scaling is often sufficient for applications with moderate traffic and data volumes.
+Consistency - in sql -ACID which provide  strong consistency.  in noSql - not 
+Data Model - sql = tables . noSql - key value pairs JSON . 
+Use Cases - sql - complex queries and transactions.  NoSQL excels in handling large-scale, unstructured, or semi-structured data.
+
+=======
+Redis -Remote Dictionary Server
+        fast and speed . so fit to real time db , like messages.  
+
+
+
+
+
+PK vs FK:
+
+Aspect       |     Primary                                            |   Key	Foreign Key
+Definition	 |     Uniquely identifies each row in a table	          |   Refers to the primary key in another table
+Uniqueness	 |     Must be unique		              	              	  |   Can have duplicate values
+Nullability	 |     Cannot be NULL		              	                  |   Can be NULL
+Scope	       |     Defined within a single table	              	    |   Establishes a link between two tables
+Purpose	     |     Ensures each record is unique and identifiable		  |   Ensures referential integrity between tables
