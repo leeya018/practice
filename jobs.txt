@@ -1,0 +1,31 @@
+amdocs  -  create the platoform for the retailers to help the cients to buy the items . java and react.  
+
+Experies - Bootcamp course on fullstack tech , react node mongo 
+
+CX technologies - platoform to help the clients to open cryto wallets in our system. 
+                we manage the crypto wallets for clients 
+                can buy and sell btc and eth
+                connecting to the api banking with api . 
+                features - create a wallet , 
+                          make a transation 
+                          confirm the transaction 
+                          hold the banalnce for the user. 
+
+
+Efcom  - project company 
+        project of genicologic system. react node js , files as db . and also the c# system 
+        also a lympath press proj , app and communication with blutooth . 
+
+
+  system
+      react js => node js => files (get the data )
+       devie<=> C# => node js => files (add files to the system  )
+
+
+my project - tinder customer .
+
+
+/////////////
+blocking vs non blocking 
+-blocking - wait to finish the line of code 
+- non blocking  - continue with the other code. ( for exmple, if I do an asyn function call but not putting the await statement. )
