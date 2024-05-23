@@ -1,13 +1,17 @@
+// Debouncing is a programming technique used to limit the rate at which a function can fire.
 function debounce(func, wait) {
   let timeout;
   return function (...args) {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
+    timeout = setTimeout(() => {
+      const res = func.apply(this, args);
+      console.log(res);
+    }, wait);
   };
 }
 
-function add(a) {
-  return a + 1;
+function sum(a, b, c) {
+  return a + b + c;
 }
-const resFunc = debounce(add, 3000);
-console.log(resFunc(1));
+const resFunc = debounce(sum, 500);
+resFunc(1, 2, 3);
