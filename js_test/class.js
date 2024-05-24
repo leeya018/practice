@@ -62,3 +62,46 @@ class MathUtil {
 // Static methods are defined using the static keyword. They can be called directly on the class without creating an instance.
 console.log(MathUtil.add(2, 3)); // Output: 5
 console.log(MathUtil.multiply(4, 5)); // Output: 20
+//me
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  print() {
+    console.log(this.x, this.y);
+  }
+}
+
+class PointName extends Point {
+  constructor(x, y, name) {
+    super(x, y);
+    this.name = name;
+  }
+  print() {
+    super.print();
+    console.log(this.name);
+  }
+}
+class Rectangle {
+  constructor(a, b, c) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+  print() {
+    console.log(this.a, this.b, this.c);
+  }
+}
+
+const a = new Point(1, 2);
+const b = new Point(3, 4);
+const c = new Point(2, 2);
+const r = new Rectangle(a, b, c);
+console.log(r);
+r.print();
+
+const pn = new PointName(3, 3, "p1");
+console.log(pn);
+pn.print();

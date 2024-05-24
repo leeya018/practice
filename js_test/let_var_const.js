@@ -47,7 +47,7 @@ console.log(obj.key); // 'newValue'
 const arr = [1, 2];
 arr.push(3);
 console.log(arr); // [ 1, 2, 3 ]
-arr = [1]; // cannot
+// arr = [1]; // cannot
 console.log(arr); //TypeError: Assignment to constant variable.
 // its protect the refernce and not the value
 
@@ -73,7 +73,7 @@ function func_let() {
 }
 func_let();
 
-console.log({ a }); //ReferenceError: a is not defined
+// console.log({ a }); //ReferenceError: a is not defined
 function func_var() {
   console.log(a);
   if (true) {
@@ -90,3 +90,10 @@ func_var();
 // if the variable holds a reference to an object (including arrays),
 // the contents of that object can still be changed. This is because the const declaration
 //  protects the reference to the object, not the content within the object itself.
+console.log(
+  "================================================================================================="
+);
+
+console.log(a); //undefined
+var a = 2;
+console.log(a); //2
