@@ -97,3 +97,29 @@ console.log(
 console.log(a); //undefined
 var a = 2;
 console.log(a); //2
+console.log(
+  "================================================================================================="
+);
+
+// async function getNum(num) {
+//   return Promise.resolve(num);
+// }
+
+function iterate() {
+  for (var i = 0; i < 5; i++) {
+    ((num) => {
+      setTimeout(() => {
+        console.log(num);
+      }, 100);
+    })(i);
+  }
+}
+// function iterate() {
+//   for (var i = 0; i < 5; i++) {
+//     setTimeout(() => {
+//       console.log(i);
+//     }, 100);
+//   }
+// }
+
+iterate();
